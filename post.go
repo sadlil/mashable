@@ -3,8 +3,9 @@ package mashable
 import (
 	"errors"
 	"net/http"
-	"golang.org/x/net/html"
+
 	"github.com/yhat/scrape"
+	"golang.org/x/net/html"
 )
 
 type postInterface interface {

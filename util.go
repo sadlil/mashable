@@ -4,9 +4,9 @@ import (
 	"encoding/json"
 	"errors"
 	"net/http"
+	"strings"
 
 	"github.com/google/go-querystring/query"
-	"strings"
 )
 
 func (c *Client) url() string {
