@@ -40,3 +40,7 @@ func New() (*Client, error) {
 func (c *Client) Posts() postInterface {
 	return newPost(c)
 }
+
+func (c *Client) Search() searchInterface {
+	return newSearch(c)
+}
