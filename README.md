@@ -1,6 +1,6 @@
 ![mashable](https://upload.wikimedia.org/wikipedia/commons/6/6d/Mashable.png)
 
-**go client for [mashable](mashable.com)**
+**go client for [mashable](http://mashable.com)**
 
 ### What is mashable
 ___
@@ -29,7 +29,7 @@ The supported resource list by the client is follows
    - [x] List
    - [x] Get
    - [x] Get From Url
-   - [] Comments
+   - [ ] Comments
 - Topics
    - [x] List
    - [x] Get
