@@ -23,6 +23,8 @@ def deps():
     get_pkgs = [
         {'pkg': 'github.com/google/go-querystring/query'},
         {'pkg': 'github.com/stretchr/testify/assert'},
+        {'pkg': 'github.com/yhat/scrape'},
+        {'pkg': 'golang.org/x/net/html'},
     ]
     for cfg in get_pkgs:
         call('go get -u ' + cfg['pkg'])

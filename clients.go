@@ -44,3 +44,11 @@ func (c *Client) Posts() postInterface {
 func (c *Client) Search() searchInterface {
 	return newSearch(c)
 }
+
+func (c *Client) Topics() topicInterface {
+	return newTopic(c)
+}
+
+func (c *Client) Users() userInterface {
+	return newUser(c)
+}

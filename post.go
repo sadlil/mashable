@@ -2,12 +2,15 @@ package mashable
 
 import (
 	"errors"
+	"net/http"
+	"golang.org/x/net/html"
+	"github.com/yhat/scrape"
 )
 
 type postInterface interface {
 	List(*ListOptions) (*PostList, error)
 	Get(string) (*Post, error)
-	// GetFromUrl(string) (*Post, error)
+	GetFromUrl(string) (*Post, error)
 }
 
 type post struct {
@@ -68,4 +71,32 @@ func (p *post) Get(id string) (*Post, error) {
 	}
 
 	return post, nil
+}
+
+func (p *post) GetFromUrl(url string) (*Post, error) {
+	post := &Post{}
+	resp, err := http.Get(url)
+	if err != nil {
+		return post, err
+	}
+	if isStatusOK(resp.StatusCode) {
+		root, err := html.Parse(resp.Body)
+		if err != nil {
+			return post, err
+		}
+
+		content, ok := scrape.Find(root, scrape.ById("post-slider"))
+		if !ok {
+			return post, errors.New("failed to find content")
+		}
+
+		article, ok := scrape.Find(content, scrape.ByClass("post"))
+		if !ok {
+			return post, errors.New("failed to find article")
+		}
+
+		id := scrape.Attr(article, "data-id")
+		return p.Get(id)
+	}
+	return post, errors.New(resp.Status)
 }

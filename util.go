@@ -6,6 +6,7 @@ import (
 	"net/http"
 
 	"github.com/google/go-querystring/query"
+	"strings"
 )
 
 func (c *Client) url() string {
@@ -17,11 +18,6 @@ func (c *Client) url() string {
 		url = url + "/" + uri
 	}
 	return url
-}
-
-func (l *ListOptions) Encode() string {
-	query, _ := query.Values(l)
-	return query.Encode()
 }
 
 func (c *Client) newRequest(method string) *http.Request {
@@ -44,6 +40,16 @@ func (c *Client) unMarshalInto(i interface{}) error {
 	}
 	c.response.Body.Close()
 	return nil
+}
+
+func (l *ListOptions) Encode() string {
+	query, _ := query.Values(l)
+	return query.Encode()
+}
+
+func (t *Topic) parseName(name string) string {
+	name = strings.Replace(strings.ToLower(name), " ", "-", -1)
+	return name
 }
 
 func isStatusOK(c int) bool {
