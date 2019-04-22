@@ -8,7 +8,7 @@ import (
 	"golang.org/x/net/html"
 )
 
-type postInterface interface {
+type PostInterface interface {
 	List(*ListOptions) (*PostList, error)
 	Get(string) (*Post, error)
 	GetFromUrl(string) (*Post, error)
@@ -18,7 +18,7 @@ type post struct {
 	c *Client
 }
 
-func newPost(c *Client) postInterface {
+func newPost(c *Client) PostInterface {
 	return &post{c}
 }
 
@@ -37,7 +37,7 @@ func (p *post) List(o *ListOptions) (*PostList, error) {
 		return posts, errors.New(p.c.response.Status)
 	}
 
-	if err := p.c.unMarshalInto(posts); err != nil {
+	if err := p.c.unmarshalInto(posts); err != nil {
 		return posts, err
 	}
 
@@ -63,7 +63,7 @@ func (p *post) Get(id string) (*Post, error) {
 		return post, errors.New(p.c.response.Status)
 	}
 
-	if err := p.c.unMarshalInto(post); err != nil {
+	if err := p.c.unmarshalInto(post); err != nil {
 		return post, err
 	}
 
@@ -86,7 +86,7 @@ func (p *post) GetFromUrl(url string) (*Post, error) {
 			return post, err
 		}
 
-		content, ok := scrape.Find(root, scrape.ById("post-slider"))
+		content, ok := scrape.Find(root, scrape.ByClass("post-slider"))
 		if !ok {
 			return post, errors.New("failed to find content")
 		}

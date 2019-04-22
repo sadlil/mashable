@@ -5,7 +5,7 @@ import (
 	"net/url"
 )
 
-type searchInterface interface {
+type SearchInterface interface {
 	Query(string) (*SearchResult, error)
 }
 
@@ -13,7 +13,7 @@ type search struct {
 	c *Client
 }
 
-func newSearch(c *Client) searchInterface {
+func newSearch(c *Client) SearchInterface {
 	return &search{c}
 }
 
@@ -32,7 +32,7 @@ func (s *search) Query(q string) (*SearchResult, error) {
 		return result, errors.New(s.c.response.Status)
 	}
 
-	if err := s.c.unMarshalInto(result); err != nil {
+	if err := s.c.unmarshalInto(result); err != nil {
 		return result, err
 	}
 

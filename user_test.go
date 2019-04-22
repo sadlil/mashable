@@ -14,5 +14,5 @@ func TestUser(t *testing.T) {
 	user, err := c.Users().Get("5396405b97b2f841ce000c99")
 	assert.Nil(t, err)
 	assert.NotNil(t, user)
-	assert.Equal(t, user.Name, "Sandra Gonzalez")
+	assert.Equal(t, "Sandra Gonzalez", user.Name)
 }

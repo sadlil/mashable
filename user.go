@@ -4,7 +4,7 @@ import (
 	"errors"
 )
 
-type userInterface interface {
+type UserInterface interface {
 	Get(string) (*User, error)
 }
 
@@ -12,7 +12,7 @@ type user struct {
 	c *Client
 }
 
-func newUser(c *Client) userInterface {
+func newUser(c *Client) UserInterface {
 	return &user{c}
 }
 
@@ -31,7 +31,7 @@ func (u *user) Get(id string) (*User, error) {
 		return user, errors.New(u.c.response.Status)
 	}
 
-	if err := u.c.unMarshalInto(user); err != nil {
+	if err := u.c.unmarshalInto(user); err != nil {
 		return user, err
 	}
 

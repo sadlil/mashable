@@ -25,7 +25,7 @@ func (c *Client) newRequest(method string) *http.Request {
 	return req
 }
 
-func (c *Client) unMarshalInto(i interface{}) error {
+func (c *Client) unmarshalInto(i interface{}) error {
 	if c.response == nil {
 		return errors.New("received nil response")
 	}
@@ -38,8 +38,7 @@ func (c *Client) unMarshalInto(i interface{}) error {
 	if err != nil {
 		return err
 	}
-	c.response.Body.Close()
-	return nil
+	return c.response.Body.Close()
 }
 
 func (l *ListOptions) Encode() string {

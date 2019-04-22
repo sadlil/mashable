@@ -4,7 +4,7 @@ import (
 	"errors"
 )
 
-type topicInterface interface {
+type TopicInterface interface {
 	List(*ListOptions) (*TopicList, error)
 	Get(string) (*Topic, error)
 }
@@ -13,7 +13,7 @@ type topic struct {
 	c *Client
 }
 
-func newTopic(c *Client) topicInterface {
+func newTopic(c *Client) TopicInterface {
 	return &topic{c}
 }
 
@@ -32,7 +32,7 @@ func (t *topic) List(o *ListOptions) (*TopicList, error) {
 		return topics, errors.New(t.c.response.Status)
 	}
 
-	if err := t.c.unMarshalInto(topics); err != nil {
+	if err := t.c.unmarshalInto(topics); err != nil {
 		return topics, err
 	}
 
@@ -58,7 +58,7 @@ func (t *topic) Get(slug string) (*Topic, error) {
 		return topic, errors.New(t.c.response.Status)
 	}
 
-	if err := t.c.unMarshalInto(topic); err != nil {
+	if err := t.c.unmarshalInto(topic); err != nil {
 		return topic, err
 	}
 

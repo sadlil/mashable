@@ -3,11 +3,6 @@
 **go client for [mashable](http://mashable.com)**
 ___
 
-Someone on this community said there is no possible usecase of this library. I agree.
-Probably not. Probably this is a library that will be a use to no one. Doesn't matter.
-It was usefull to me. 
-___
-
 ### What is mashable
 ___
 

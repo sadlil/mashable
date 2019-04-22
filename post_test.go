@@ -18,7 +18,7 @@ func TestPostList(t *testing.T) {
 	})
 	assert.Nil(t, err)
 	assert.Len(t, posts.Posts, 1)
-	assert.Equal(t, reflect.TypeOf(posts.Posts[0].Title), reflect.TypeOf(""))
+	assert.Equal(t, reflect.TypeOf(""), reflect.TypeOf(posts.Posts[0].Title))
 
 	posts, err = c.Posts().List(&ListOptions{
 		Page:    5,
@@ -26,9 +26,9 @@ func TestPostList(t *testing.T) {
 	})
 	assert.Nil(t, err)
 	assert.Len(t, posts.Posts, 5)
-	assert.Equal(t, reflect.TypeOf(posts.Posts[0].Title), reflect.TypeOf(""))
-	assert.Equal(t, posts.Collection.Page, 5)
-	assert.Equal(t, posts.Collection.PerPage, 5)
+	assert.Equal(t, reflect.TypeOf(""), reflect.TypeOf(posts.Posts[0].Title))
+	assert.Equal(t, 5, posts.Collection.Page)
+	assert.Equal(t, 5, posts.Collection.PerPage)
 }
 
 func TestPostGet(t *testing.T) {
@@ -39,7 +39,7 @@ func TestPostGet(t *testing.T) {
 	posts, err := c.Posts().Get("576377a06df6124759000024")
 	assert.Nil(t, err)
 	assert.NotNil(t, posts)
-	assert.Equal(t, posts.Title, "Litchfield's newest inmate cooks up delicious drama in 'Orange Is the New Black' Season 4")
+	assert.Equal(t, "Litchfield's newest inmate cooks up delicious drama in 'Orange Is the New Black' Season 4", posts.Title)
 }
 
 func TestPostGetFromUrl(t *testing.T) {
@@ -50,5 +50,5 @@ func TestPostGetFromUrl(t *testing.T) {
 	posts, err := c.Posts().GetFromUrl("http://mashable.com/2016/06/17/orange-is-the-new-black-blair-brown")
 	assert.Nil(t, err)
 	assert.NotNil(t, posts)
-	assert.Equal(t, posts.Title, "Litchfield's newest inmate cooks up delicious drama in 'Orange Is the New Black' Season 4")
+	assert.Equal(t, "Litchfield's newest inmate cooks up delicious drama in 'Orange Is the New Black' Season 4", posts.Title)
 }

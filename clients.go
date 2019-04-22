@@ -37,18 +37,18 @@ func New() (*Client, error) {
 	return client, nil
 }
 
-func (c *Client) Posts() postInterface {
+func (c *Client) Posts() PostInterface {
 	return newPost(c)
 }
 
-func (c *Client) Search() searchInterface {
+func (c *Client) Search() SearchInterface {
 	return newSearch(c)
 }
 
-func (c *Client) Topics() topicInterface {
+func (c *Client) Topics() TopicInterface {
 	return newTopic(c)
 }
 
-func (c *Client) Users() userInterface {
+func (c *Client) Users() UserInterface {
 	return newUser(c)
 }

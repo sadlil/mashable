@@ -13,5 +13,5 @@ func TestSearch(t *testing.T) {
 
 	res, err := c.Search().Query("hello world")
 	assert.Nil(t, err)
-	assert.NotEqual(t, res.Search.Results.Posts, 0)
+	assert.NotEqual(t, 0, res.Search.Results.Posts)
 }

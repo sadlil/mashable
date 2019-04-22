@@ -64,7 +64,7 @@ type Post struct {
 	LeadType      string                 `json:"lead_type"`
 	CommentsURL   string                 `json:"comments_url"`
 	ShortcodeData struct {
-		Gallery []interface{} `json:"gallery"`
+		Gallery interface{} `json:"gallery"`
 	} `json:"shortcode_data"`
 	Webview        bool   `json:"webview"`
 	SponsoredBy    string `json:"sponsored_by"`
